@@ -10,6 +10,8 @@ import {
 	View,
 	H3,
 	TouchableOpacity,
+	Input,
+	Item,
 } from 'native-base'
 import { TextInput } from 'react-native'
 import api from '../api'
@@ -23,8 +25,6 @@ const CheckOut = ({ history }) => {
 	const [note, setNote] = useState('')
 	const [address, setAddress] = useState('')
 	const [phoneNumber, setPhoneNumber] = useState('')
-
-	const [orderId, setOrderId] = useState(0)
 
 	const onChnageNote = (text) => {
 		return setNote(text)
@@ -43,17 +43,18 @@ const CheckOut = ({ history }) => {
 			note,
 			address,
 			phoneNumber,
-			status: ['Order Placed'],
+			update: ['Order Placed'],
+			// status: 'pending',
+			userId: 5,
+			riderId: 0,
 		}
 
-		return api
-			.createOrder(order)
-			.then((res) => setOrderId(res.ref['@ref'].id))
-			.then(() => {
+		api.createOrder(order)
+			.then((res) => {
 				setCartPrice(0)
 				setCartItems([])
+				history.push(`/track/${res.ref['@ref'].id}`)
 			})
-			.then(history.push(`/track/${orderId}`))
 			.catch((err) => console.log('Error: ', err))
 	}
 
@@ -75,25 +76,50 @@ const CheckOut = ({ history }) => {
 				{cartItems.map(({ title, price }) => {
 					return <CardX title={title} price={price} />
 				})}
-				<Text>Total: Tk {cartPrice}</Text>
+				<CardItem>
+					<Body>
+						<Text>Total</Text>
+						<Text note>Tk {cartPrice}</Text>
+					</Body>
+				</CardItem>
 			</Card>
 
 			<Card>
-				<TextInput
-					placeholder='Special Note'
-					value={note}
-					onChangeText={onChnageNote}
-				/>
-				<TextInput
-					placeholder='Address'
-					value={address}
-					onChangeText={onChnageAddress}
-				/>
-				<TextInput
-					placeholder='Contact No'
-					value={phoneNumber}
-					onChangeText={onChnagePhoneNumber}
-				/>
+				<CardItem>
+					<Body>
+						<Item regular>
+							<Input
+								placeholder='Special Note'
+								value={note}
+								onChangeText={onChnageNote}
+							/>
+						</Item>
+					</Body>
+				</CardItem>
+
+				<CardItem>
+					<Body>
+						<Item regular>
+							<Input
+								placeholder='Address'
+								value={address}
+								onChangeText={onChnageAddress}
+							/>
+						</Item>
+					</Body>
+				</CardItem>
+
+				<CardItem>
+					<Body>
+						<Item regular>
+							<Input
+								placeholder='Contact No'
+								value={phoneNumber}
+								onChangeText={onChnagePhoneNumber}
+							/>
+						</Item>
+					</Body>
+				</CardItem>
 			</Card>
 
 			<Button full onPress={checkOut}>

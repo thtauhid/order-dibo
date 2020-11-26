@@ -6,7 +6,7 @@ const Home = ({ history }) => {
 	return (
 		<View style={{ alignItems: 'center' }}>
 			<Image
-				source={require('./assets/logo.jpg')}
+				source={require('../assets/logo.jpg')}
 				style={{ height: 210, width: 150, margin: 50 }}
 			/>
 

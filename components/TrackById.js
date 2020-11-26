@@ -15,7 +15,7 @@ const StatusPage = (props) => {
 		cartPrice: 'Loading...',
 		address: 'Loading...',
 		phoneNumber: 'Loading...',
-		status: ['Loading...'],
+		update: ['Loading...'],
 	})
 
 	useEffect(() => {
@@ -80,8 +80,8 @@ const StatusPage = (props) => {
 				})}
 			</Card>
 			<Card>
-				<H3>Order Status</H3>
-				{orderData.status.map((item) => {
+				<H3>Order Update</H3>
+				{orderData.update.map((item) => {
 					return (
 						<CardItem>
 							<Left>
