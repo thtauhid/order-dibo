@@ -1,49 +1,27 @@
-import React, { useState } from "react"
-import { StyleSheet, FlatList } from "react-native"
-import Card from "./Card"
+import React, { useState } from 'react'
+import { Image } from 'react-native'
+import { Button, View, Text } from 'native-base'
+import { Link } from 'react-router-native'
+import OrderPage from './OrderPage'
 
-const Home = () => {
-  const [data, setData] = useState([
-    {
-      image: "https://picsum.photos/300/200",
-      title: "Dream Food Industry",
-      text: "$$, Set Menu, Ice Cream, Upto 50% off",
-      fee: "9",
-    },
-    {
-      image: "https://picsum.photos/300/200",
-      title: "Food Fantasy",
-      text: "$$$, Set Menu, Upto 20% off",
-      fee: "19",
-    },
-    {
-      image: "https://picsum.photos/300/200",
-      title: "Fat Belly",
-      text: "$, Set Menu, Upto 50% off",
-      fee: "19",
-    },
-    {
-      image: "https://picsum.photos/300/200",
-      title: "Nazu's Kitchen",
-      text: "$, Burger, Upto 50% off",
-      fee: "0",
-    },
-  ])
-  return (
-    <FlatList
-      data={data}
-      renderItem={({ item }) => {
-        return (
-          <Card
-            image={item.image}
-            title={item.title}
-            text={item.text}
-            fee={item.fee}
-          />
-        )
-      }}
-    />
-  )
+const Home = ({ history }) => {
+	return (
+		<View style={{ alignItems: 'center' }}>
+			<Image
+				source={require('./assets/logo.jpg')}
+				style={{ height: 210, width: 150, margin: 50 }}
+			/>
+
+			<Button block onPress={() => history.push('/order')}>
+				<Text>New Order</Text>
+			</Button>
+			<Text></Text>
+
+			<Button block onPress={() => history.push('/track')}>
+				<Text>Tracking</Text>
+			</Button>
+		</View>
+	)
 }
 
 export default Home

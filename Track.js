@@ -14,7 +14,7 @@ import {
 import { PriceContext, CartItemsContext } from './Contexts'
 import api from './api'
 
-const OrderPage = () => {
+const Track = () => {
 	const { cartPrice, setCartPrice } = useContext(PriceContext)
 	const { cartItems, setCartItems } = useContext(CartItemsContext)
 
@@ -108,4 +108,4 @@ const OrderPage = () => {
 	)
 }
 
-export default OrderPage
+export default Track
