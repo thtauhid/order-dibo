@@ -15,18 +15,18 @@ const App = () => {
 	const [cartPrice, setCartPrice] = useState(0)
 	const [isReady, setIsReady] = useState(false)
 	useEffect(() => {
-		;async () => {
+		return async () => {
 			await Font.loadAsync({
-				// Roboto: require('native-base/Fonts/Roboto.ttf'),
-				// Roboto_medium: require('native-base/Fonts/Roboto_medium.ttf'),
-				Roboto_medium: require('./assets/roboto-medium.ttf'),
+				Roboto: require('native-base/Fonts/Roboto.ttf'),
+				Roboto_medium: require('native-base/Fonts/Roboto_medium.ttf'),
+				// Roboto_medium: require('./assets/roboto-medium.ttf'),
 			})
 			setIsReady(true)
 		}
 	}, [])
 
 	if (isReady) {
-		return <Text>Hi</Text>
+		return <Text>Loading...</Text>
 	} else {
 		return (
 			<PriceContext.Provider value={{ cartPrice, setCartPrice }}>
