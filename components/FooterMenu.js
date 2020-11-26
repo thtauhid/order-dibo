@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { Footer, FooterTab, Button, Text } from 'native-base'
 
-import { PriceContext } from './Contexts'
+import { PriceContext } from '../Contexts'
 
 const FooterMenu = ({ history }) => {
 	const { cartPrice, setCartPrice } = useContext(PriceContext)

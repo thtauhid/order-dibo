@@ -3,12 +3,12 @@ import { Container, Header, Title, Content, Body, Text } from 'native-base'
 import * as Font from 'expo-font'
 import { NativeRouter as Router, Route } from 'react-router-native'
 import { PriceContext, CartItemsContext } from './Contexts'
-import Home from './Home'
-import OrderPage from './OrderPage'
-import CheckOutPage from './CheckOutPage'
-import StatusPage from './StatusPage'
-import Track from './Track'
-import FooterMenu from './Footer'
+import Home from './components/Home'
+import Shop from './components/Shop'
+import CheckOut from './components/CheckOut'
+import Track from './components/Track'
+import TrackById from './components/TrackById'
+import FooterMenu from './components/FooterMenu'
 
 const App = () => {
 	const [cartItems, setCartItems] = useState([])
@@ -40,22 +40,15 @@ const App = () => {
 							</Header>
 							<Content>
 								<Route path='/' exact component={Home} />
-								<Route
-									path='/order'
-									exact
-									component={OrderPage}
-								/>
-								<Route path='/track' component={Track} />
+								<Route path='/shop' exact component={Shop} />
+								<Route path='/track' exact component={Track} />
 								<Route
 									path='/track/:id'
-									component={StatusPage}
+									component={TrackById}
 								/>
-								<Route
-									path='/checkout'
-									component={CheckOutPage}
-								/>
+								<Route path='/checkout' component={CheckOut} />
 							</Content>
-							<Route path='/order' component={FooterMenu} />
+							<Route path='/shop' component={FooterMenu} />
 						</Container>
 					</Router>
 				</CartItemsContext.Provider>

@@ -11,10 +11,10 @@ import {
 	H3,
 } from 'native-base'
 
-import { PriceContext, CartItemsContext } from './Contexts'
-import api from './api'
+import { PriceContext, CartItemsContext } from '../Contexts'
+import api from '../api'
 
-const Track = () => {
+const Shop = () => {
 	const { cartPrice, setCartPrice } = useContext(PriceContext)
 	const { cartItems, setCartItems } = useContext(CartItemsContext)
 
@@ -108,4 +108,4 @@ const Track = () => {
 	)
 }
 
-export default Track
+export default Shop

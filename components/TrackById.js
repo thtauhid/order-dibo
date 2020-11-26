@@ -1,16 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import {
-	Card,
-	CardItem,
-	Text,
-	Button,
-	Left,
-	Body,
-	Right,
-	View,
-	H3,
-} from 'native-base'
-import api from './api'
+import { Card, CardItem, Text, Left, Body, View, H3 } from 'native-base'
+import api from '../api'
 
 const StatusPage = (props) => {
 	const id = props.match.params.id

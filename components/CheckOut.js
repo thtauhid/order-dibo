@@ -12,9 +12,9 @@ import {
 	TouchableOpacity,
 } from 'native-base'
 import { TextInput } from 'react-native'
-import api from './api'
+import api from '../api'
 
-import { PriceContext, CartItemsContext } from './Contexts'
+import { PriceContext, CartItemsContext } from '../Contexts'
 
 const CheckOut = ({ history }) => {
 	const { cartPrice, setCartPrice } = useContext(PriceContext)
