@@ -4,21 +4,16 @@ import {
 	CardItem,
 	Text,
 	Button,
-	Left,
 	Body,
-	Right,
 	View,
-	H3,
-	TouchableOpacity,
 	Input,
 	Item,
 } from 'native-base'
-import { TextInput } from 'react-native'
 import api from '../api'
 
 import { PriceContext, CartItemsContext } from '../Contexts'
 
-const CheckOut = ({ history }) => {
+const CheckOut = ({ navigation }) => {
 	const { cartPrice, setCartPrice } = useContext(PriceContext)
 	const { cartItems, setCartItems } = useContext(CartItemsContext)
 
@@ -53,7 +48,10 @@ const CheckOut = ({ history }) => {
 			.then((res) => {
 				setCartPrice(0)
 				setCartItems([])
-				history.push(`/track/${res.ref['@ref'].id}`)
+				setNote('')
+				setAddress('')
+				setPhoneNumber('')
+				navigation.navigate('TrackById', { id: res.ref['@ref'].id })
 			})
 			.catch((err) => console.log('Error: ', err))
 	}
@@ -71,7 +69,6 @@ const CheckOut = ({ history }) => {
 
 	return (
 		<View>
-			<H3>Checkout Page</H3>
 			<Card>
 				{cartItems.map(({ title, price }) => {
 					return <CardX title={title} price={price} />

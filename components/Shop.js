@@ -9,12 +9,16 @@ import {
 	Right,
 	View,
 	H3,
+	Footer,
+	FooterTab,
+	Container,
+	Content,
 } from 'native-base'
 
 import { PriceContext, CartItemsContext } from '../Contexts'
 import api from '../api'
 
-const Shop = () => {
+const Shop = ({ navigation }) => {
 	const { cartPrice, setCartPrice } = useContext(PriceContext)
 	const { cartItems, setCartItems } = useContext(CartItemsContext)
 
@@ -100,11 +104,22 @@ const Shop = () => {
 	}
 
 	return (
-		<View>
-			{categories().map((category) => {
-				return itemsByCategory(category)
-			})}
-		</View>
+		<Container>
+			<Content>
+				{categories().map((category) => {
+					return itemsByCategory(category)
+				})}
+			</Content>
+			<Footer>
+				<FooterTab>
+					<Button
+						full
+						onPress={() => navigation.navigate('CheckOut')}>
+						<Text>Order Value: {cartPrice}</Text>
+					</Button>
+				</FooterTab>
+			</Footer>
+		</Container>
 	)
 }
 
