@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import * as Font from 'expo-font'
 import { PriceContext, CartItemsContext } from './Contexts'
+import Home from './components/Home'
 import Shop from './components/Shop'
 import CheckOut from './components/CheckOut'
 import Track from './components/Track'
@@ -28,12 +29,18 @@ const App = () => {
 			<PriceContext.Provider value={{ cartPrice, setCartPrice }}>
 				<CartItemsContext.Provider value={{ cartItems, setCartItems }}>
 					<NavigationContainer>
-						<Stack.Navigator initialRouteName='Shop'>
-							{/* <Stack.Screen name='Home' component={Home} /> */}
+						<Stack.Navigator
+							initialRouteName='Home'
+							screenOptions={{ headerShown: true }}>
+							<Stack.Screen
+								name='Home'
+								component={Home}
+								options={{ title: 'Home' }}
+							/>
 							<Stack.Screen
 								name='Shop'
 								component={Shop}
-								options={{ title: 'Shopping Page' }}
+								options={{ title: 'Shop' }}
 							/>
 							<Stack.Screen
 								name='Track'

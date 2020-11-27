@@ -16,7 +16,7 @@ const Home = ({ history, navigation }) => {
 			<Text></Text>
 
 			<Button block onPress={() => navigation.navigate('Track')}>
-				<Text>Tracking</Text>
+				<Text>Track Order</Text>
 			</Button>
 		</View>
 	)
