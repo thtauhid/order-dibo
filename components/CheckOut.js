@@ -5,9 +5,10 @@ import {
 	Text,
 	Button,
 	Body,
-	View,
 	Input,
 	Item,
+	Container,
+	Content,
 } from 'native-base'
 import api from '../api'
 
@@ -68,61 +69,63 @@ const CheckOut = ({ navigation }) => {
 	}
 
 	return (
-		<View>
-			<Card>
-				{cartItems.map(({ title, price }) => {
-					return <CardX title={title} price={price} />
-				})}
-				<CardItem>
-					<Body>
-						<Text>Total</Text>
-						<Text note>Tk {cartPrice}</Text>
-					</Body>
-				</CardItem>
-			</Card>
+		<Container>
+			<Content>
+				<Card>
+					{cartItems.map(({ title, price }) => {
+						return <CardX title={title} price={price} />
+					})}
+					<CardItem>
+						<Body>
+							<Text>Total</Text>
+							<Text note>Tk {cartPrice}</Text>
+						</Body>
+					</CardItem>
+				</Card>
 
-			<Card>
-				<CardItem>
-					<Body>
-						<Item regular>
-							<Input
-								placeholder='Special Note'
-								value={note}
-								onChangeText={onChnageNote}
-							/>
-						</Item>
-					</Body>
-				</CardItem>
+				<Card>
+					<CardItem>
+						<Body>
+							<Item regular>
+								<Input
+									placeholder='Special Note'
+									value={note}
+									onChangeText={onChnageNote}
+								/>
+							</Item>
+						</Body>
+					</CardItem>
 
-				<CardItem>
-					<Body>
-						<Item regular>
-							<Input
-								placeholder='Address'
-								value={address}
-								onChangeText={onChnageAddress}
-							/>
-						</Item>
-					</Body>
-				</CardItem>
+					<CardItem>
+						<Body>
+							<Item regular>
+								<Input
+									placeholder='Address'
+									value={address}
+									onChangeText={onChnageAddress}
+								/>
+							</Item>
+						</Body>
+					</CardItem>
 
-				<CardItem>
-					<Body>
-						<Item regular>
-							<Input
-								placeholder='Contact No'
-								value={phoneNumber}
-								onChangeText={onChnagePhoneNumber}
-							/>
-						</Item>
-					</Body>
-				</CardItem>
-			</Card>
+					<CardItem>
+						<Body>
+							<Item regular>
+								<Input
+									placeholder='Contact No'
+									value={phoneNumber}
+									onChangeText={onChnagePhoneNumber}
+								/>
+							</Item>
+						</Body>
+					</CardItem>
+				</Card>
 
-			<Button full onPress={checkOut}>
-				<Text>Place Order</Text>
-			</Button>
-		</View>
+				<Button full onPress={checkOut}>
+					<Text>Place Order</Text>
+				</Button>
+			</Content>
+		</Container>
 	)
 }
 
