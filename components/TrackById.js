@@ -85,7 +85,7 @@ const TrackById = ({ route }) => {
 				<H3>Order Update</H3>
 				{orderData.update.map((item) => {
 					return (
-						<CardItem>
+						<CardItem key={uuid()}>
 							<Left>
 								<Body>
 									<Text>{item}</Text>
