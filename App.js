@@ -1,15 +1,15 @@
 import React, { useState } from 'react'
-import { Container, Header, Title, Content, Body } from 'native-base'
 import * as Font from 'expo-font'
-import { NativeRouter as Router, Route } from 'react-router-native'
 import { PriceContext, CartItemsContext } from './Contexts'
 import Home from './components/Home'
 import Shop from './components/Shop'
 import CheckOut from './components/CheckOut'
 import Track from './components/Track'
 import TrackById from './components/TrackById'
-import FooterMenu from './components/FooterMenu'
 import { AppLoading } from 'expo'
+
+import { NavigationContainer } from '@react-navigation/native'
+import { createStackNavigator } from '@react-navigation/stack'
 
 const App = () => {
 	const [cartItems, setCartItems] = useState([])
@@ -22,30 +22,43 @@ const App = () => {
 			Roboto_medium: require('native-base/Fonts/Roboto_medium.ttf'),
 		})
 
+	const Stack = createStackNavigator()
+
 	if (isReady) {
 		return (
 			<PriceContext.Provider value={{ cartPrice, setCartPrice }}>
 				<CartItemsContext.Provider value={{ cartItems, setCartItems }}>
-					<Router>
-						<Container>
-							<Header>
-								<Body style={{ alignItems: 'center' }}>
-									<Title>Order Dibo Ltd.</Title>
-								</Body>
-							</Header>
-							<Content>
-								<Route path='/' exact component={Home} />
-								<Route path='/shop' exact component={Shop} />
-								<Route path='/track' exact component={Track} />
-								<Route
-									path='/track/:id'
-									component={TrackById}
-								/>
-								<Route path='/checkout' component={CheckOut} />
-							</Content>
-							<Route path='/shop' component={FooterMenu} />
-						</Container>
-					</Router>
+					<NavigationContainer>
+						<Stack.Navigator
+							initialRouteName='Home'
+							screenOptions={{ headerShown: true }}>
+							<Stack.Screen
+								name='Home'
+								component={Home}
+								options={{ title: 'Home' }}
+							/>
+							<Stack.Screen
+								name='Shop'
+								component={Shop}
+								options={{ title: 'Shop' }}
+							/>
+							<Stack.Screen
+								name='Track'
+								component={Track}
+								options={{ title: 'Track' }}
+							/>
+							<Stack.Screen
+								name='TrackById'
+								component={TrackById}
+								options={{ title: 'Track Order' }}
+							/>
+							<Stack.Screen
+								name='CheckOut'
+								component={CheckOut}
+								options={{ title: 'Checkout' }}
+							/>
+						</Stack.Navigator>
+					</NavigationContainer>
 				</CartItemsContext.Provider>
 			</PriceContext.Provider>
 		)

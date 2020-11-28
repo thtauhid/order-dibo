@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Image } from 'react-native'
 import { Button, View, Text } from 'native-base'
 
-const Home = ({ history }) => {
+const Home = ({ history, navigation }) => {
 	return (
 		<View style={{ alignItems: 'center' }}>
 			<Image
@@ -10,13 +10,13 @@ const Home = ({ history }) => {
 				style={{ height: 210, width: 150, margin: 50 }}
 			/>
 
-			<Button block onPress={() => history.push('/shop')}>
+			<Button block onPress={() => navigation.navigate('Shop')}>
 				<Text>New Order</Text>
 			</Button>
 			<Text></Text>
 
-			<Button block onPress={() => history.push('/track')}>
-				<Text>Tracking</Text>
+			<Button block onPress={() => navigation.navigate('Track')}>
+				<Text>Track Order</Text>
 			</Button>
 		</View>
 	)

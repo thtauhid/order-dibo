@@ -9,12 +9,18 @@ import {
 	Right,
 	View,
 	H3,
+	Footer,
+	FooterTab,
+	Container,
+	Content,
 } from 'native-base'
+import 'react-native-get-random-values'
+import { v4 as uuid } from 'uuid'
 
 import { PriceContext, CartItemsContext } from '../Contexts'
 import api from '../api'
 
-const Shop = () => {
+const Shop = ({ navigation }) => {
 	const { cartPrice, setCartPrice } = useContext(PriceContext)
 	const { cartItems, setCartItems } = useContext(CartItemsContext)
 
@@ -25,13 +31,9 @@ const Shop = () => {
 			.then((items) => {
 				const data = items.map((item) => {
 					const { id: key } = item.ref['@ref']
-					let { title, details, price, category } = item.data
 					return {
 						key,
-						title,
-						details,
-						price,
-						category,
+						...item.data,
 					}
 				})
 				setItems(data)
@@ -51,7 +53,7 @@ const Shop = () => {
 			.filter((item) => item.category == category)
 			.map((item) => item)
 		return (
-			<View>
+			<View key={uuid()}>
 				<H3>{category}</H3>
 				{itemsx.map((item) => {
 					return (
@@ -60,6 +62,7 @@ const Shop = () => {
 							details={item.details}
 							price={item.price}
 							category={item.category}
+							key={uuid()}
 						/>
 					)
 				})}
@@ -85,9 +88,13 @@ const Shop = () => {
 					<Right>
 						<Button
 							onPress={() => {
-								setCartPrice(cartPrice + item.price)
+								const itemx = {
+									key: uuid(),
+									...item,
+								}
+								setCartPrice(cartPrice + itemx.price)
 								setCartItems((prevItems) => [
-									item,
+									itemx,
 									...prevItems,
 								])
 							}}>
@@ -100,11 +107,22 @@ const Shop = () => {
 	}
 
 	return (
-		<View>
-			{categories().map((category) => {
-				return itemsByCategory(category)
-			})}
-		</View>
+		<Container>
+			<Content>
+				{categories().map((category) => {
+					return itemsByCategory(category)
+				})}
+			</Content>
+			<Footer>
+				<FooterTab>
+					<Button
+						full
+						onPress={() => navigation.navigate('CheckOut')}>
+						<Text>Order Value: {cartPrice}</Text>
+					</Button>
+				</FooterTab>
+			</Footer>
+		</Container>
 	)
 }
 

@@ -7,14 +7,13 @@ import {
 	Left,
 	Body,
 	Right,
-	View,
-	H3,
+	Container,
+	Content,
 } from 'native-base'
-
 import { PriceContext, CartItemsContext } from '../Contexts'
 import api from '../api'
 
-const Track = ({ history }) => {
+const Track = ({ navigation }) => {
 	const { cartPrice, setCartPrice } = useContext(PriceContext)
 	const { cartItems, setCartItems } = useContext(CartItemsContext)
 
@@ -36,48 +35,55 @@ const Track = ({ history }) => {
 	}, [])
 
 	return (
-		<View>
-			{items.map((item) => {
-				return (
-					<Card>
-						<CardItem>
-							<Left>
-								<Body>
-									<Text>Order ID</Text>
-									<Text note>{item.key}</Text>
-								</Body>
-							</Left>
-						</CardItem>
-						<CardItem>
-							<Left>
-								<Body>
-									<Text>Price</Text>
-									<Text note>Tk {item.cartPrice}</Text>
-								</Body>
-							</Left>
-						</CardItem>
-						<CardItem>
-							<Left>
-								<Body>
-									<Text>Status</Text>
-									<Text note>{item.update[0]}</Text>
-								</Body>
-							</Left>
-							<Right>
-								<Body>
-									<Button
-										onPress={() =>
-											history.push(`/track/${item.key}`)
-										}>
-										<Text>View Order</Text>
-									</Button>
-								</Body>
-							</Right>
-						</CardItem>
-					</Card>
-				)
-			})}
-		</View>
+		<Container>
+			<Content>
+				{items.map((item) => {
+					return (
+						<Card>
+							<CardItem>
+								<Left>
+									<Body>
+										<Text>Order ID</Text>
+										<Text note>{item.key}</Text>
+									</Body>
+								</Left>
+							</CardItem>
+							<CardItem>
+								<Left>
+									<Body>
+										<Text>Price</Text>
+										<Text note>Tk {item.cartPrice}</Text>
+									</Body>
+								</Left>
+							</CardItem>
+							<CardItem>
+								<Left>
+									<Body>
+										<Text>Status</Text>
+										<Text note>{item.update[0]}</Text>
+									</Body>
+								</Left>
+								<Right>
+									<Body>
+										<Button
+											onPress={() =>
+												navigation.navigate(
+													'TrackById',
+													{
+														id: item.key,
+													}
+												)
+											}>
+											<Text>View Order</Text>
+										</Button>
+									</Body>
+								</Right>
+							</CardItem>
+						</Card>
+					)
+				})}
+			</Content>
+		</Container>
 	)
 }
 
