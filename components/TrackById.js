@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Card, CardItem, Text, Left, Body, View, H3 } from 'native-base'
 import api from '../api'
 
-const StatusPage = ({ route }) => {
+const TrackById = ({ route }) => {
 	const { id } = route.params
 
 	const [orderData, setOrderData] = useState({
@@ -98,4 +98,4 @@ const StatusPage = ({ route }) => {
 	)
 }
 
-export default StatusPage
+export default TrackById
