@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { Card, CardItem, Text, Left, Body, View, H3 } from 'native-base'
 import api from '../api'
+import 'react-native-get-random-values'
+import { v4 as uuid } from 'uuid'
 
 const TrackById = ({ route }) => {
 	const { id } = route.params
@@ -68,7 +70,7 @@ const TrackById = ({ route }) => {
 
 				{orderData.cartItems.map((item) => {
 					return (
-						<CardItem>
+						<CardItem key={uuid()}>
 							<Left>
 								<Body>
 									<Text>{item.title}</Text>

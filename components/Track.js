@@ -39,7 +39,7 @@ const Track = ({ navigation }) => {
 			<Content>
 				{items.map((item) => {
 					return (
-						<Card>
+						<Card key={item.key}>
 							<CardItem>
 								<Left>
 									<Body>
