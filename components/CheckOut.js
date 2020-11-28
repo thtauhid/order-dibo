@@ -9,6 +9,8 @@ import {
 	Item,
 	Container,
 	Content,
+	Left,
+	Right,
 } from 'native-base'
 import api from '../api'
 
@@ -17,6 +19,8 @@ import { PriceContext, CartItemsContext } from '../Contexts'
 const CheckOut = ({ navigation }) => {
 	const { cartPrice, setCartPrice } = useContext(PriceContext)
 	const { cartItems, setCartItems } = useContext(CartItemsContext)
+
+	const deliveryCharge = 30
 
 	const [note, setNote] = useState('')
 	const [address, setAddress] = useState('')
@@ -32,15 +36,20 @@ const CheckOut = ({ navigation }) => {
 		return setPhoneNumber(text)
 	}
 
+	const deleteItem = (value) => {
+		const newCartItems = cartItems.filter((item) => item.key !== value)
+		return setCartItems(newCartItems)
+	}
+
 	const checkOut = () => {
 		const order = {
 			cartItems,
-			cartPrice,
+			cartPrice: cartPrice + deliveryCharge,
 			note,
 			address,
 			phoneNumber,
 			update: ['Order Placed'],
-			// status: 'pending',
+			currentStatus: 'pending',
 			userId: 5,
 			riderId: 0,
 		}
@@ -57,13 +66,28 @@ const CheckOut = ({ navigation }) => {
 			.catch((err) => console.log('Error: ', err))
 	}
 
-	const CardX = ({ title, price }) => {
+	const CardX = ({ title, price, value }) => {
 		return (
-			<CardItem>
-				<Body>
-					<Text>{title}</Text>
-					<Text note>Tk {price}</Text>
-				</Body>
+			<CardItem key={value}>
+				<Left>
+					<Body>
+						<Text>{title}</Text>
+						<Text note>Tk {price}</Text>
+					</Body>
+				</Left>
+				<Right>
+					<Body>
+						<Button
+							bordered
+							danger
+							onPress={() => {
+								deleteItem(value)
+								setCartPrice(cartPrice - price)
+							}}>
+							<Text>Remove</Text>
+						</Button>
+					</Body>
+				</Right>
 			</CardItem>
 		)
 	}
@@ -72,14 +96,43 @@ const CheckOut = ({ navigation }) => {
 		<Container>
 			<Content>
 				<Card>
-					{cartItems.map(({ title, price }) => {
-						return <CardX title={title} price={price} />
+					{cartItems.map((item) => {
+						return (
+							<CardX
+								key={item.key}
+								value={item.key}
+								title={item.title}
+								price={item.price}
+								category={item.category}
+							/>
+						)
 					})}
+				</Card>
+
+				<Card>
 					<CardItem>
-						<Body>
-							<Text>Total</Text>
-							<Text note>Tk {cartPrice}</Text>
-						</Body>
+						<Left>
+							<Body>
+								<Text>Tk {cartPrice}</Text>
+								<Text note>Total</Text>
+							</Body>
+						</Left>
+					</CardItem>
+					<CardItem>
+						<Left>
+							<Body>
+								<Text>Tk 30</Text>
+								<Text note>Delivery Charge</Text>
+							</Body>
+						</Left>
+					</CardItem>
+					<CardItem>
+						<Left>
+							<Body>
+								<Text>Tk {cartPrice + deliveryCharge}</Text>
+								<Text note>Sub Total</Text>
+							</Body>
+						</Left>
 					</CardItem>
 				</Card>
 
