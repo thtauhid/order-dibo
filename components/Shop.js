@@ -92,7 +92,7 @@ const Shop = ({ navigation }) => {
 									key: uuid(),
 									...item,
 								}
-								setCartPrice(cartPrice + itemx.price)
+								setCartPrice(cartPrice + parseInt(itemx.price))
 								setCartItems((prevItems) => [
 									itemx,
 									...prevItems,

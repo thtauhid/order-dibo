@@ -82,7 +82,7 @@ const CheckOut = ({ navigation }) => {
 							danger
 							onPress={() => {
 								deleteItem(value)
-								setCartPrice(cartPrice - price)
+								setCartPrice(cartPrice - parseInt(price))
 							}}>
 							<Text>Remove</Text>
 						</Button>
