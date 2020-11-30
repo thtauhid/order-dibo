@@ -1,24 +1,50 @@
 import React, { useState } from 'react'
 import { Image } from 'react-native'
-import { Button, View, Text } from 'native-base'
+import {
+	Button,
+	Text,
+	Card,
+	CardItem,
+	Body,
+	Container,
+	Content,
+} from 'native-base'
 
-const Home = ({ history, navigation }) => {
+const Home = ({ navigation }) => {
 	return (
-		<View style={{ alignItems: 'center' }}>
-			<Image
-				source={require('../assets/logo.jpg')}
-				style={{ height: 210, width: 150, margin: 50 }}
-			/>
-
-			<Button block onPress={() => navigation.navigate('Shop')}>
-				<Text>New Order</Text>
-			</Button>
-			<Text></Text>
-
-			<Button block onPress={() => navigation.navigate('Track')}>
-				<Text>Track Order</Text>
-			</Button>
-		</View>
+		<Container>
+			<Content>
+				<Image
+					source={require('../assets/logo.jpg')}
+					style={{
+						height: 210,
+						width: 150,
+						margin: 50,
+						alignSelf: 'center',
+					}}
+				/>
+				<Card>
+					<CardItem>
+						<Body>
+							<Button
+								block
+								onPress={() => navigation.navigate('Shop')}>
+								<Text>New Order</Text>
+							</Button>
+						</Body>
+					</CardItem>
+					<CardItem>
+						<Body>
+							<Button
+								block
+								onPress={() => navigation.navigate('Track')}>
+								<Text>Track Order</Text>
+							</Button>
+						</Body>
+					</CardItem>
+				</Card>
+			</Content>
+		</Container>
 	)
 }
 
