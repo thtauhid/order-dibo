@@ -62,6 +62,7 @@ const Shop = ({ navigation }) => {
 							details={item.details}
 							price={item.price}
 							category={item.category}
+							deliveryTime={item.deliveryTime}
 							key={uuid()}
 						/>
 					)
@@ -80,6 +81,12 @@ const Shop = ({ navigation }) => {
 							<Text note>{item.details}</Text>
 						</Body>
 					</Left>
+					<Right>
+						<Body>
+							<Text>Delivery Time</Text>
+							<Text note>{item.deliveryTime} minutes</Text>
+						</Body>
+					</Right>
 				</CardItem>
 				<CardItem>
 					<Left>
