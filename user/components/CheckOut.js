@@ -61,7 +61,10 @@ const CheckOut = ({ navigation }) => {
 				setNote('')
 				setAddress('')
 				setPhoneNumber('')
-				navigation.navigate('TrackById', { id: res.ref['@ref'].id })
+				navigation.navigate('Orders', {
+					screen: 'TrackById',
+					params: { id: res.ref['@ref'].id },
+				})
 			})
 			.catch((err) => console.log('Error: ', err))
 	}

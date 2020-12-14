@@ -1,19 +1,19 @@
 import React, { useState } from 'react'
+import { StyleSheet } from 'react-native'
+
 import * as Font from 'expo-font'
-import { PriceContext, CartItemsContext } from './Contexts'
-import Home from './components/Home'
-import Shop from './components/Shop'
-import CheckOut from './components/CheckOut'
-import Track from './components/Track'
-import TrackById from './components/TrackById'
 import { AppLoading } from 'expo'
 
+import ShopNav from './navigation/ShopNav'
+import OrdersNav from './navigation/OrdersNav'
+import ProfileNav from './navigation/ProfileNav'
+
 import { NavigationContainer } from '@react-navigation/native'
-import { createStackNavigator } from '@react-navigation/stack'
+import { createDrawerNavigator } from '@react-navigation/drawer'
+
+const Drawer = createDrawerNavigator()
 
 const App = () => {
-	const [cartItems, setCartItems] = useState([])
-	const [cartPrice, setCartPrice] = useState(0)
 	const [isReady, setIsReady] = useState(false)
 
 	const getFonts = () =>
@@ -22,45 +22,15 @@ const App = () => {
 			Roboto_medium: require('native-base/Fonts/Roboto_medium.ttf'),
 		})
 
-	const Stack = createStackNavigator()
-
 	if (isReady) {
 		return (
-			<PriceContext.Provider value={{ cartPrice, setCartPrice }}>
-				<CartItemsContext.Provider value={{ cartItems, setCartItems }}>
-					<NavigationContainer>
-						<Stack.Navigator
-							initialRouteName='Home'
-							screenOptions={{ headerShown: true }}>
-							<Stack.Screen
-								name='Home'
-								component={Home}
-								options={{ title: 'Home' }}
-							/>
-							<Stack.Screen
-								name='Shop'
-								component={Shop}
-								options={{ title: 'Shop' }}
-							/>
-							<Stack.Screen
-								name='Track'
-								component={Track}
-								options={{ title: 'Track' }}
-							/>
-							<Stack.Screen
-								name='TrackById'
-								component={TrackById}
-								options={{ title: 'Track Order' }}
-							/>
-							<Stack.Screen
-								name='CheckOut'
-								component={CheckOut}
-								options={{ title: 'Checkout' }}
-							/>
-						</Stack.Navigator>
-					</NavigationContainer>
-				</CartItemsContext.Provider>
-			</PriceContext.Provider>
+			<NavigationContainer>
+				<Drawer.Navigator>
+					<Drawer.Screen name='Shop' component={ShopNav} />
+					<Drawer.Screen name='Orders' component={OrdersNav} />
+					<Drawer.Screen name='Profile' component={ProfileNav} />
+				</Drawer.Navigator>
+			</NavigationContainer>
 		)
 	} else {
 		return (
@@ -71,4 +41,11 @@ const App = () => {
 		)
 	}
 }
+const styles = StyleSheet.create({
+	icon: {
+		width: 32,
+		height: 32,
+	},
+})
+
 export default App

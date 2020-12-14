@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useState, useEffect } from 'react'
 import {
 	Card,
 	CardItem,
@@ -10,13 +10,9 @@ import {
 	Container,
 	Content,
 } from 'native-base'
-import { PriceContext, CartItemsContext } from '../Contexts'
 import api from '../api'
 
-const Track = ({ navigation }) => {
-	const { cartPrice, setCartPrice } = useContext(PriceContext)
-	const { cartItems, setCartItems } = useContext(CartItemsContext)
-
+const Orders = ({ navigation }) => {
 	const [items, setItems] = useState([])
 
 	useEffect(() => {
@@ -87,4 +83,4 @@ const Track = ({ navigation }) => {
 	)
 }
 
-export default Track
+export default Orders
