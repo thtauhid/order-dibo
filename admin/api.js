@@ -1,4 +1,4 @@
-const api_domain = 'order-dibo-api.netlify.app' // write without https:// or www
+const api_domain = 'ondemand.tauhid.xyz' // write without https:// or www
 
 const getSingleOrder = (id) => {
 	return fetch(`https://${api_domain}/.netlify/functions/getSingleOrder`, {
@@ -31,11 +31,11 @@ const createItem = (data) => {
 }
 
 const getItems = () => {
-	return fetch(
-		'https://order-dibo-api.netlify.app/.netlify/functions/getItems'
-	).then((res) => {
-		return res.json()
-	})
+	return fetch(`https://${api_domain}/.netlify/functions/getItems`).then(
+		(res) => {
+			return res.json()
+		}
+	)
 }
 
 const getSingleItem = (id) => {
@@ -84,11 +84,11 @@ const addRider = (data) => {
 }
 
 const getRiders = () => {
-	return fetch(
-		'https://order-dibo-api.netlify.app/.netlify/functions/getRiders'
-	).then((res) => {
-		return res.json()
-	})
+	return fetch(`https://${api_domain}/.netlify/functions/getRiders`).then(
+		(res) => {
+			return res.json()
+		}
+	)
 }
 
 const getSingleRider = (id) => {

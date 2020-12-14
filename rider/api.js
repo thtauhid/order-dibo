@@ -1,4 +1,4 @@
-const api_domain = 'order-dibo-api.netlify.app' // write without https:// or www
+const api_domain = 'ondemand.tauhid.xyz' // write without https:// or www
 
 const getOrdersByRiderIdAndStatus = (riderId, currentStatus) => {
 	return fetch(
