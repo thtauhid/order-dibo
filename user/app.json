@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "order-dibo-app",
-    "slug": "order-dibo-app",
-    "version": "1.0.0",
+    "name": "OnDemand Food",
+    "slug": "on-demand-food-user",
+    "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -17,14 +17,16 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "icon": "./assets/icon.ico",
+      "bundleIdentifier": "com.thtauhid.ondemandfooduser"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.thtauhid.orderdiboapp"
+      "package": "com.thtauhid.ondemandfooduser"
     },
     "web": {
       "favicon": "./assets/favicon.png"

@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "order-dibo-rider",
-    "slug": "order-dibo-rider",
-    "version": "1.0.0",
+    "name": "Rider",
+    "slug": "on-demand-food-rider",
+    "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -17,14 +17,16 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "icon": "./assets/icon.ico",
+      "bundleIdentifier": "com.thtauhid.ondemandfoodrider"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.thtauhid.orderdiborider"
+      "package": "com.thtauhid.ondemandfoodrider"
     },
     "web": {
       "favicon": "./assets/favicon.png"
