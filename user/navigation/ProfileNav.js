@@ -1,12 +1,16 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import { Text } from 'native-base'
 import { createStackNavigator } from '@react-navigation/stack'
-import Profile from '../components/Profile'
+import Account from '../components/Account'
+import SignIn from '../components/SignIn'
+
+import firebase from '../firebase'
 const Stack = createStackNavigator()
 
 const ProfileNav = () => {
 	return (
-		<Stack.Navigator>
-			<Stack.Screen name='Profile' component={Profile} />
+		<Stack.Navigator initialRouteName='Account'>
+			<Stack.Screen name='Account' component={Account} />
 		</Stack.Navigator>
 	)
 }
