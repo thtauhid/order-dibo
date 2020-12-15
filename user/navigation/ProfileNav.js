@@ -1,10 +1,6 @@
-import React, { useState, useEffect } from 'react'
-import { Text } from 'native-base'
+import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
 import Account from '../components/Account'
-import SignIn from '../components/SignIn'
-
-import firebase from '../firebase'
 const Stack = createStackNavigator()
 
 const ProfileNav = () => {
