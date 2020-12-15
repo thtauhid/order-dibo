@@ -7,7 +7,7 @@ LOW PRIORITY: <img src="https://img.shields.io/badge/PRIORITY-LOW-blue?style=for
 -->
 
 -   Firebase Realtime Database <img src="https://img.shields.io/badge/PRIORITY-HIGH-red?style=for-the-badge" />
--   Firebase Login - rider & admin <img src="https://img.shields.io/badge/PRIORITY-HIGH-red?style=for-the-badge" />
+-   Firebase Login - rider & admin <img src="https://img.shields.io/badge/PRIORITY-MEDIUM-yellow?style=for-the-badge" />
 -   Combine same items in checkout <img src="https://img.shields.io/badge/PRIORITY-LOW-blue?style=for-the-badge" />
 
 ---
