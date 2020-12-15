@@ -9,6 +9,7 @@ import {
 	Container,
 	Content,
 	H3,
+	CardItem,
 } from 'native-base'
 
 import firebase from '../firebase'
@@ -22,7 +23,7 @@ const Account = () => {
 	useEffect(() => {
 		setUser(firebase.auth().currentUser)
 		setIsReady(true)
-	}, [setUser])
+	}, [])
 
 	const SignOut = () => {
 		firebase.auth().signOut()
@@ -58,7 +59,7 @@ const Account = () => {
 				.signInWithCredential(credential)
 				.then((result) => {
 					console.log(result)
-					setUser(result)
+					setUser(result.user)
 				})
 		}
 		return (
@@ -114,12 +115,18 @@ const Account = () => {
 	}
 
 	const LoggedIn = () => {
-		// const [P1] = user.providerData
 		return (
 			<Container>
 				<Content>
-					<Text>Profile: {user.providerData[0].phoneNumber}</Text>
-					<Button onPress={SignOut}>
+					<Card>
+						<CardItem>
+							<Text>
+								Logged in as: {user.providerData[0].phoneNumber}
+							</Text>
+						</CardItem>
+					</Card>
+
+					<Button block danger onPress={SignOut}>
 						<Text>Logout</Text>
 					</Button>
 				</Content>
