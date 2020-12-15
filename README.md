@@ -1,7 +1,11 @@
 ## Development Roadmap
 
--   Firebase Authentication
+-   Firebase Realtime Database [High]
+-   Firebase Login - rider & admin [High]
+-   Combine same items in checkout [Low]
 
-    -   Email Address
+---
 
--   Firebase Realtime Database
+## Implemented
+
+-   Firebase Login (using phone) - user
