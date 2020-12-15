@@ -114,10 +114,11 @@ const Account = () => {
 	}
 
 	const LoggedIn = () => {
+		// const [P1] = user.providerData
 		return (
 			<Container>
 				<Content>
-					<Text>Profile</Text>
+					<Text>Profile: {user.providerData[0].phoneNumber}</Text>
 					<Button onPress={SignOut}>
 						<Text>Logout</Text>
 					</Button>
