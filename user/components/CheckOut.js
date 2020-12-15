@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import {
 	Card,
 	CardItem,
@@ -13,10 +13,13 @@ import {
 	Right,
 } from 'native-base'
 import api from '../api'
+import firebase from '../firebase'
 
 import { PriceContext, CartItemsContext } from '../Contexts'
 
 const CheckOut = ({ navigation }) => {
+	const user = firebase.auth().currentUser
+
 	const { cartPrice, setCartPrice } = useContext(PriceContext)
 	const { cartItems, setCartItems } = useContext(CartItemsContext)
 
@@ -26,14 +29,17 @@ const CheckOut = ({ navigation }) => {
 	const [address, setAddress] = useState('')
 	const [phoneNumber, setPhoneNumber] = useState('')
 
+	useEffect(() => {
+		if (user) {
+			setPhoneNumber(user.providerData[0].phoneNumber)
+		}
+	}, [])
+
 	const onChnageNote = (text) => {
 		return setNote(text)
 	}
 	const onChnageAddress = (text) => {
 		return setAddress(text)
-	}
-	const onChnagePhoneNumber = (text) => {
-		return setPhoneNumber(text)
 	}
 
 	const deleteItem = (value) => {
@@ -140,46 +146,60 @@ const CheckOut = ({ navigation }) => {
 				</Card>
 
 				<Card>
-					<CardItem>
-						<Body>
-							<Item regular>
-								<Input
-									placeholder='Special Note'
-									value={note}
-									onChangeText={onChnageNote}
-								/>
-							</Item>
-						</Body>
-					</CardItem>
+					{user ? (
+						<>
+							<CardItem>
+								<Body>
+									<Item regular>
+										<Input
+											placeholder='Special Note'
+											value={note}
+											onChangeText={onChnageNote}
+										/>
+									</Item>
+								</Body>
+							</CardItem>
 
-					<CardItem>
-						<Body>
-							<Item regular>
-								<Input
-									placeholder='Address'
-									value={address}
-									onChangeText={onChnageAddress}
-								/>
-							</Item>
-						</Body>
-					</CardItem>
+							<CardItem>
+								<Body>
+									<Item regular>
+										<Input
+											placeholder='Address'
+											value={address}
+											onChangeText={onChnageAddress}
+										/>
+									</Item>
+								</Body>
+							</CardItem>
 
-					<CardItem>
-						<Body>
-							<Item regular>
-								<Input
-									placeholder='Contact No'
-									value={phoneNumber}
-									onChangeText={onChnagePhoneNumber}
-								/>
-							</Item>
-						</Body>
-					</CardItem>
+							<CardItem>
+								<Body>
+									<Item disabled>
+										<Input
+											placeholder='Contact No'
+											value={phoneNumber}
+											disabled
+										/>
+									</Item>
+								</Body>
+							</CardItem>
+							<Button full onPress={checkOut}>
+								<Text>Place Order</Text>
+							</Button>
+						</>
+					) : (
+						<Button
+							block
+							danger
+							onPress={() => {
+								navigation.navigate('Profile', {
+									screen: 'Account',
+								})
+							}}>
+							<Text>log In to place order</Text>
+						</Button>
+					)}
 				</Card>
-
-				<Button full onPress={checkOut}>
-					<Text>Place Order</Text>
-				</Button>
 			</Content>
 		</Container>
 	)
