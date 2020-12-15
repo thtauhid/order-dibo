@@ -14,7 +14,7 @@ import firebase from '../firebase'
 
 import { FirebaseRecaptchaVerifierModal } from 'expo-firebase-recaptcha'
 
-const SignIn = () => {
+const SignIn = ({ navigation }) => {
 	const [isCodeSent, setIsCodeSent] = useState(false)
 	const [phoneNumber, setPhoneNumber] = useState('')
 	const [code, setCode] = useState('')
@@ -46,6 +46,7 @@ const SignIn = () => {
 			.then((result) => {
 				console.log(result)
 			})
+			.then(navigation.navigate('Profile'))
 	}
 
 	const onChangePhoneNumber = (text) => {
